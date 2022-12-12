@@ -8,24 +8,28 @@
         #kuang {
             width: 100px;
             height: 180px;
-            margin: 10% auto;
+            margin: 10% auto 100px;
         } 
         #anniu {
             width: 200px;
-            height: 100px;
-            margin: 50% auto;
+            height: 200px;
+            margin: 10px auto;
+            padding: 30px;
         }
         #button {
             width: 180px;
             height: 80px;
-            background-color: rgb(255, 255, 255); 
-            border: 10px solid yellow;
+            background-color: #3498db; 
+            border: none;
             border-radius: 50%;
-        }
-        #zi {
+            color: rgb(255, 255, 255);
             font-size: 20px;
-            
+            outline: none;
         }
+        /* #button:active {
+            border: none;
+        } */
+        
     </style>
     <body>
         <script>
@@ -44,7 +48,8 @@
             <img id="light" onclick="changeImage()" src="./img/pic_bulboff.gif" width="100" height="180">
         </div>
         <div id="anniu">
-            <button id="button" onclick="changeImage()" ><p id="zi">按钮</p></button>
+            <button id="button" onclick="changeImage()" >开关</button>
+            
         </div>
     </body>
 </html>
