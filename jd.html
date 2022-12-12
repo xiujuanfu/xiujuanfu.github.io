@@ -14,9 +14,11 @@
         }
         #logo-png {
             width: 190px;
-            height: 160px;
+            height: 120px;
             position: absolute;
+            top: 20px;
             z-index: 2;
+            overflow: hidden;
         }
         #logo-gif {
             position: absolute;
@@ -32,16 +34,27 @@
         #input {
             width: 400px;
             height: 40px;
-            background-color: aliceblue;
-            border: 2px solid red;
+            /* background-color: rgb(255, 255, 255);
+            border: 2px solid rgb(225, 37, 27); */
             float: left;
         }
         #button {
             width: 60px;
-            height: 40px;
-            background-color: red;
-            border: 2px solid red;
+            height: 42px;
+            background-color: rgb(225, 37, 27);
+            border: 2px solid rgb(225, 37, 27);
             float: left;
+        }
+        #logo-sou {
+            margin: 0 10px;
+        }
+        #input-input {
+            width: 400px;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            border: 2px solid rgb(225, 37, 27);
+            font-size: 20px;
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -56,9 +69,11 @@
             </div>
         </div>
         <div id="search">
-            <div id="input"></div>
+            <div id="input">
+                <input id="input-input" type="text">
+            </div>
             <div id="button">
-                
+                <img id="logo-sou" src="./img/微信截图_20221212131219.png" alt="" width="40px" height="40px">
             </div> 
         </div>
    </div>
