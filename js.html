@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>变量</title> 
+</head>
+<body>
+    <p id="demo"></p> 
+<script>
+    var person=
+{
+	fname : "John",
+	lname  : "Doe",
+	id        :  5566
+};
+document.write(person.lname + "<br>");
+document.write(person["lname"] + "<br>");
+ var women = {
+    firstName: "Harry",
+    lastName : "lily",
+    id : 5577,
+    fullName : function() 
+    {
+        return this.firstName + " " + this.lastName;
+    }
+};
+document.write(women.lastName+ "<br>");
+document.write(women["lastName"] + "<br>");
+document.getElementById("demo").innerHTML = women.fullName();
+</script>
+
+</body>
+</html>

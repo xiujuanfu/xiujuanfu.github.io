@@ -60,6 +60,15 @@
     <script>
         function tishi(){
             var inputValue = document.getElementById("input-input").value||"";
+            try {
+                inputValue=inputValue+100;
+               // a.value = 1;没有定义 会报错 在控制台
+                
+            } catch (error) {
+                console.log(error);
+                
+            }
+            
             if(inputValue.indexOf("娟")>-1){
                 alert(inputValue+"666");
             }else{

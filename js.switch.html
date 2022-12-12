@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>switch</title>
+    </head>
+    <body>
+        今天是星期：<input id="date" value="1" />
+        <p > 提示:填入用阿拉伯数字,星期天则为0</p>
+        <button onclick="myfunction()">点击按钮</button>
+        <p id="xianshi"></p>
+        <script>
+            function myfunction() {
+                var x;
+                var y;
+                x=document.getElementById("date").value;//这里x出来是字符串
+                console.log(x);
+                // x=parseInt(x);把x从字符串变成数值
+                switch (x) {
+                    case "0":y="马上要上班/上学啦！";
+                        break;
+                    case "1":y="上班/上学";
+                        break;
+                    case "2":y="上班/上学";
+                        break;
+                    case "3":y="上班/上学";
+                        break;
+                    case "4":y="上班/上学";
+                        break;
+                    case "5":y="马上就周末啦！";
+                        break;
+                    default:y="周末第一天！";
+                        break;
+                }
+                document.getElementById("xianshi").innerHTML=y;
+            }
+        </script>
+    </body>
+</html>

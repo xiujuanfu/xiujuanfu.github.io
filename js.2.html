@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>变量作用域</title>
+    </head>
+    <body>
+        <script>
+            "use strict";
+            var a=1;
+            let b=4;
+            // for (var i = 0; i < 10; i++) {
+            //          let b=11;
+            //         console.log(i);
+            //     }
+               // return i;
+            {
+                let a=2;
+                let b=3;
+                console.log("a=",a);
+                console.log("b=",b);
+                console.log("---");
+            }
+
+            console.log("a=",a);
+            console.log("b=",b);
+            console.log("---");
+           // console.log(a,b);
+            {
+                var a=5;
+                //let b=6;
+                console.log("a=",a);
+                console.log("b=",b);
+                console.log("---");
+            }
+            console.log("a=",a);
+            console.log("b=",b);
+            console.log("---");
+        </script>
+    </body>
+</html>

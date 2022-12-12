@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>条件运算</title>
+    </head>
+    <body>
+        年纪：<input id="age"  value="18"/>
+        <button onclick="myfunction()">点击按钮</button>
+        <p id="xianshi"></p>
+        <script>
+            function myfunction() {
+                var age,v;
+                age=document.getElementById("age").value;
+                console.log(age);
+                v=(age<18)?"未成年":"成年";
+                document.getElementById("xianshi").innerHTML=v;
+            }
+        </script>
+    </body>
+</html>
