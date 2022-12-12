@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>开灯</title>
+    </head>
+    <style>
+    </style>
+    <body>
+        <script>
+            function changeImage(){
+                var x=document.getElementById("light")
+                if(x.src.match("bulbon")){
+                    x.src="./img/pic_bulboff.gif"
+                }else{
+                    x.src="./img/pic_bulbon.gif"
+                }
+            }
+        </script>
+        <div>
+            <img id="light" onclick="changeImage()" src="./img/pic_bulboff.gif" width="100" height="180">
+        </div>
+    </body>
+</html>
