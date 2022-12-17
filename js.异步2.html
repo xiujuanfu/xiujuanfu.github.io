@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>异步promise</head>
+    <body>
+        <script>
+            // setTimeout(function(){
+            //     console.log("Frist");
+            //     setTimeout(function(){
+            //         console.log("Second");
+            //         setTimeout(function(){
+            //             console.log("Third");
+            //         },3000)
+            //     },2000)
+            // },1000)
+            new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.log("First");
+                    resolve();
+                },1000);
+            }).then(function(){
+                return new Promise(function (resolve,reject){
+                    setTimeout(function(){
+                        console.log("Second");
+                        resolve();
+                    },2000);
+                });
+            }).then(function(){
+                setTimeout(function(){
+                    console.log("Third");
+                },3000);
+            });
+        </script>
+    </body>
+</html>

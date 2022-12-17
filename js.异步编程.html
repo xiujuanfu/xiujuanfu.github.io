@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>异步编程</title>
+    </head>
+    <body>
+        <p>回调函数等待 3 秒后执行。</p>
+        <p id="demo"></p>
+        <p id="two"></p>
+        <p id="demo2"></p>
+        <script>
+            function print() {
+                document.getElementById("demo").innerHTML="RUNOOB!";
+            }   
+            setTimeout(print, 3000);
+
+            setTimeout(function () {
+                document.getElementById("two").innerHTML="RUNOOB!";
+            }, 3000);
+
+            document.getElementById("demo2").innerHTML="RUNOOB-2!";
+        </script>
+    </body>
+</html>

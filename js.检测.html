@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>检测</title>
+        <script>
+            function v() {
+                var x=document.getElementById("fname").value;
+                if (x == null||x == "") {
+                    alert("需要输入名字");
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        名字：<input id="fname" type="text" value="">
+        <button onclick="v()">提交</button>
+    </body>
+</html>

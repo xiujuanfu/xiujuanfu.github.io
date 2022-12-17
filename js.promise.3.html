@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>promise函数</title>
+    </head>
+    <body>
+        <script>
+            function print(delay,message){
+                return new Promise(function (resolve,reject){
+                    setTimeout(function(){
+                        console.log(message);
+                        resolve();
+                    },delay);
+                });
+            }
+            // 将它的核心部分写成一个 Promise 函数
+
+            // print(1000,"First").then(function(){
+            //     return print(2000,"Second");
+            // }).then(function(){
+            //     print(3000,"Third");
+            // })
+            // 然后我们就可以放心大胆的实现程序功能了
+
+            async function asyncFunc() {
+                await print(1000, "First");
+                await print(4000, "Second");
+                await print(3000, "Third");
+            }
+            asyncFunc();
+            // 异步函数 async function 中可以使用 await 指令，
+            // await 指令后必须跟着一个 Promise，异步函数会在这个 Promise 运行中暂停，
+            // 直到其运行结束再继续运行。
+
+
+            //这种返回值为一个 Promise 对象的函数称作 Promise 函数，它常常用于开发基于异步操作的库
+        </script>
+    </body>
+</html>
