@@ -4,20 +4,151 @@
         <title>麻将计分</title>
     </head>
     <style>
-
+        #zong {
+            height: 100px;
+            background-color: rgb(214, 214, 214);
+        }
+        #name {
+            width: 60px;
+            height: 70px;
+            background-color: rgb(255, 0, 0);
+            position: relative;
+            top: 10px;
+            left: 20px;
+        }
+        #avatar {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            position: relative;
+        }
+        #name2 {
+            position: relative;
+            background-color: black;
+            margin: auto;
+            color: aliceblue;
+            text-align: center;
+        }
+        .losebase {
+            width: 60px;
+            height: 60px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: 30px;
+            left: 262px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 25px;
+            line-height: 55px;
+        }
+        .loseselect {
+            width: 60px;
+            height: 60px;
+            background-color: rgb(125, 125, 125);
+            position: absolute;
+            top: 30px;
+            left: 262px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 25px;
+            line-height: 55px;
+            color: white;
+        }
+        .winselect {
+            width: 60px;
+            height: 60px;
+            background-color: rgb(255, 0, 0);
+            position: absolute;
+            top: 30px;
+            left: 200px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 25px;
+            line-height: 55px;
+            color: white;
+        }
+        .winbase {
+            width: 60px;
+            height: 60px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: 30px;
+            left: 200px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 25px;
+            line-height: 55px;
+            color:black;
+        }
+        .win {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 50px;
+            left: 600px;
+            color: black;
+            font-size: 20px;
+        }
+        .score {
+            width: 100px;
+            height: 20px;
+            position: absolute;
+            top: 50px;
+            left: 620px;
+        }
+        #Confirmationbox {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 85%;
+            left: 40%;
+        }
+        #Confirmation {
+            width: 100px;
+            height: 50px;
+            background-color: rgb(60, 179, 115);
+            border: 1px solid white;
+            color: white;
+            font-size: 20px;
+            outline: none;
+        }
     </style>
     <body>
-        <div>
-            <h1></h1>
-        </div>
-        <div>
-            <div>
-
+        <div id="zong">
+            <div id="name">
+                <div id="avatar"></div>
+                <p id="name2" >飞飞</p>
             </div>
-            
+            <div id="win" class="winselect" onclick="select('win')">赢</div>
+            <div id="lose" class="losebase" onclick="select('lose')">输</div>
+            <div>
+                <div id="sign" class="win">+</div>
+                <input id="score" class="score" type="text" value="">
+            </div>
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="Confirmationbox">
+            <button id="Confirmation" onclick="score()">确认</button>
+        </div>
+        <script>
+            function select(type){
+                var x=document.getElementById("win");
+                var y=document.getElementById("lose");
+                var z=document.getElementById("sign");
+                if (type=="win") {
+                    x.setAttribute("class","winselect");
+                    y.setAttribute("class","losebase");
+                    z.innerHTML="+";
+                }else{
+                    x.setAttribute("class","winbase");
+                    y.setAttribute("class","loseselect");
+                    z.innerHTML="-";
+                }
+            }
+            function score(){
+                var a=document.getElementById("score").value;
+                console.log(a);
+                
+            }
+        </script>
     </body>
 </html>

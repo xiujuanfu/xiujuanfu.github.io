@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>继承</title>
+    </head>
+    <body>
+        <p id="one"></p>
+        <p id="two"></p>
+        <script>
+            class person {
+                constructora(name,age) {
+                    this.newname=name;
+                    this.newage=age;
+                }
+                set _newname(x){
+                    this.newname=x;
+                }
+                set _newage(y){
+                    this.newage=y;
+                }
+                get _newname(){
+                    return this.newname;
+                }
+                get _newage(){
+                    return this.newage;
+                }
+                static hello(x) {
+                    return "Hello " + x.newname;
+                }
+            }
+
+            let jane = new person("Jane",12);
+            jane._newname="hhhh";
+            document.getElementById("one").innerHTML=jane._newname;
+            document.getElementById("two").innerHTML=person.hello(jane);
+        </script>
+    </body>
+</html>
