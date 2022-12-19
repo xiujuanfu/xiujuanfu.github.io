@@ -158,7 +158,7 @@
             <div id="zong1" class="one">
                 <div class="namebox">
                     <div class="avatar"><img src="./img/player1.png"></div>
-                    <p class="name" value="" >玩家1</p>
+                    <p id="name1" class="name" value="" onclick="changeName(1)">玩家1</p>
                 </div>
                 <div class="box">
                     <div id="win1" class="winselect" onclick="select('1','win')">赢</div><div id="lose1" class="losebase" onclick="select('1','lose')">输</div>
@@ -172,7 +172,7 @@
             <div id="zong2" class="one">
                 <div class="namebox">
                     <div class="avatar"><img src="./img/player2.png"></div>
-                    <p class="name" >玩家2</p>
+                    <p id="name2" class="name" value="" onclick="changeName(2)">玩家2</p>
                 </div>
                 <div class="box">
                     <div id="win2" class="winselect" onclick="select('2','win')">赢</div><div id="lose2" class="losebase" onclick="select('2','lose')">输</div>
@@ -186,7 +186,7 @@
             <div id="zong3" class="one">
                 <div class="namebox">
                     <div class="avatar"><img src="./img/player3.png"></div>
-                    <p class="name">玩家3</p>
+                    <p id="name3" class="name" value="" onclick="changeName(3)">玩家3</p>
                 </div>
                 <div class="box">
                     <div id="win3" class="winselect" onclick="select('3','win')">赢</div><div id="lose3" class="losebase" onclick="select('3','lose')">输</div>
@@ -200,7 +200,7 @@
             <div id="zong4" class="one">
                 <div class="namebox">
                     <div class="avatar"><img src="./img/player4.png"></div>
-                    <p class="name">玩家4</p>
+                    <p id="name4" class="name" value="" onclick="changeName(4)">玩家4</p>
                 </div>
                 <div class="box">
                     <div id="win4" class="winselect" onclick="select('4','win')">赢</div><div id="lose4" class="losebase" onclick="select('4','lose')">输</div>
@@ -216,10 +216,10 @@
                 <thead>
                     <tr>
                         <th>圈数</th>
-                        <th>玩家一</th>
-                        <th>玩家二</th>
-                        <th>玩家三</th>
-                        <th>玩家四</th>
+                        <th id="tname1">玩家一</th>
+                        <th id="tname2">玩家二</th>
+                        <th id="tname3">玩家三</th>
+                        <th id="tname4">玩家四</th>
                     </tr>
                     <tr id="total"> 
                         <th>总计</th>
@@ -241,6 +241,16 @@
         </div>
 
         <script>
+            // function saveData(){
+
+            // }
+            function changeName(playerId){
+                var name = prompt("新昵称是:");
+                document.getElementById("name"+playerId).innerHTML=name;
+                players["player"+playerId].name=name;
+                document.getElementById("tname"+playerId).innerHTML=name;
+
+            }
             var players={};
             players.player1={name:"玩家1",score:0,sign:1,total:0};
             players.player2={name:"玩家2",score:0,sign:1,total:0};

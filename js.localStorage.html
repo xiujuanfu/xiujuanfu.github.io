@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>localStorage</title>
+    </head>
+    <body>
+        <div id="name">hhh</div>
+        <script>
+            window.onload = function(){
+                var oBtn = document.getElementById("name");
+                oBtn.onclick = function(){
+                    var name = prompt("名字是:");
+                    document.write(name);
+                }
+            }
+
+            // localStorage.setItem("name","jane")
+            // localStorage.getItem("name");
+        </script>
+    </body>
+</html>
+
