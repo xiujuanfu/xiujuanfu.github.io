@@ -4,50 +4,68 @@
         <title>麻将计分</title>
     </head>
     <style>
-        #zong {
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .one {
+            width: 100%;
             height: 100px;
-            background-color: rgb(214, 214, 214);
+            background-color: #eee;
         }
-        #name {
-            width: 60px;
-            height: 70px;
-            background-color: rgb(255, 0, 0);
-            position: relative;
-            top: 10px;
-            left: 20px;
+        .one:nth-child(even) {
+            background-color: #ccc;
         }
-        #avatar {
+        .namebox {
+            float: left;
+            width: 30%;
+            height: 100px;
+        }
+        .box {
+            float: left;
+            width: 30%;
+            height: 100px;
+        }
+        .boxbox {
+            float: left;
+            width: 30%;
+            height: 100px;
+        }
+        .avatar {
+            margin-left: 20px;
+            margin-top: 10px;
             width: 60px;
             height: 60px;
             background-color: white;
-            position: relative;
         }
-        #name2 {
-            position: relative;
+        .avatar img {
+            width: 100%;
+            height: 100%;
+        }
+        .name {
+            width: 60px;
             background-color: black;
-            margin: auto;
             color: aliceblue;
             text-align: center;
+            margin-left: 20px;
         }
         .losebase {
+            display: inline-block;
+            margin: 20px 0;
             width: 60px;
             height: 60px;
             background-color: rgb(255, 255, 255);
-            position: absolute;
-            top: 30px;
-            left: 262px;
             border: 1px solid black;
             text-align: center;
             font-size: 25px;
             line-height: 55px;
         }
         .loseselect {
+            display: inline-block;
             width: 60px;
             height: 60px;
             background-color: rgb(125, 125, 125);
-            position: absolute;
-            top: 30px;
-            left: 262px;
+            margin: 20px 0;
             border: 1px solid black;
             text-align: center;
             font-size: 25px;
@@ -55,12 +73,11 @@
             color: white;
         }
         .winselect {
+            display: inline-block;
             width: 60px;
             height: 60px;
             background-color: rgb(255, 0, 0);
-            position: absolute;
-            top: 30px;
-            left: 200px;
+            margin: 20px 0;
             border: 1px solid black;
             text-align: center;
             font-size: 25px;
@@ -68,12 +85,11 @@
             color: white;
         }
         .winbase {
+            display: inline-block;
             width: 60px;
             height: 60px;
             background-color: rgb(255, 255, 255);
-            position: absolute;
-            top: 30px;
-            left: 200px;
+            margin: 20px 0;
             border: 1px solid black;
             text-align: center;
             font-size: 25px;
@@ -81,26 +97,27 @@
             color:black;
         }
         .win {
+            display: inline-block;
             width: 20px;
             height: 20px;
-            position: absolute;
-            top: 50px;
-            left: 600px;
+            margin: 40px 0;
             color: black;
             font-size: 20px;
         }
         .score {
-            width: 100px;
-            height: 20px;
-            position: absolute;
-            top: 50px;
-            left: 620px;
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
         }
+       
+       
         #Confirmationbox {
             width: 100px;
             height: 100px;
             position: absolute;
-            top: 85%;
+            top: 500px;
             left: 40%;
         }
         #Confirmation {
@@ -112,28 +129,122 @@
             font-size: 20px;
             outline: none;
         }
+        
+        #table {
+            width: 600px;
+            height: 150px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: 600px;
+            left: 20%;
+            border: none;
+        }
+        td {
+            text-align: center;
+        }
+        th {
+            background-color: #555;
+            color: rgb(255, 255, 255);
+        }
+        tr:nth-child(odd) {
+            background-color: #f6f4f0;
+        }
+        
+
     </style>
     <body>
-        <div id="zong">
-            <div id="name">
-                <div id="avatar"></div>
-                <p id="name2" >飞飞</p>
+        <div id="players">
+            <div id="zong1" class="one">
+                <div class="namebox">
+                    <div class="avatar"><img src="./img/player1.png"></div>
+                    <p class="name" value="" >玩家1</p>
+                </div>
+                <div class="box">
+                    <div id="win1" class="winselect" onclick="select('1','win')">赢</div><div id="lose1" class="losebase" onclick="select('1','lose')">输</div>
+                </div>
+                <div class="boxbox">
+                    <div id="sign1" class="win">+</div>
+                    <input id="score1" class="score" type="number" value="">
+                </div>
             </div>
-            <div id="win" class="winselect" onclick="select('win')">赢</div>
-            <div id="lose" class="losebase" onclick="select('lose')">输</div>
-            <div>
-                <div id="sign" class="win">+</div>
-                <input id="score" class="score" type="text" value="">
+        
+            <div id="zong2" class="one">
+                <div class="namebox">
+                    <div class="avatar"><img src="./img/player2.png"></div>
+                    <p class="name" >玩家2</p>
+                </div>
+                <div class="box">
+                    <div id="win2" class="winselect" onclick="select('2','win')">赢</div><div id="lose2" class="losebase" onclick="select('2','lose')">输</div>
+                </div>
+                <div class="boxbox">
+                    <div id="sign2" class="win">+</div>
+                    <input id="score2" class="score" type="number" value="">
+                </div>
+            </div> 
+            
+            <div id="zong3" class="one">
+                <div class="namebox">
+                    <div class="avatar"><img src="./img/player3.png"></div>
+                    <p class="name">玩家3</p>
+                </div>
+                <div class="box">
+                    <div id="win3" class="winselect" onclick="select('3','win')">赢</div><div id="lose3" class="losebase" onclick="select('3','lose')">输</div>
+                </div>
+                <div class="boxbox">
+                    <div id="sign3" class="win">+</div>
+                    <input id="score3" class="score" type="number" value="">
+                </div>
             </div>
+
+            <div id="zong4" class="one">
+                <div class="namebox">
+                    <div class="avatar"><img src="./img/player4.png"></div>
+                    <p class="name">玩家4</p>
+                </div>
+                <div class="box">
+                    <div id="win4" class="winselect" onclick="select('4','win')">赢</div><div id="lose4" class="losebase" onclick="select('4','lose')">输</div>
+                </div>
+                <div class="boxbox">
+                    <div id="sign4" class="win">+</div>
+                    <input id="score4" class="score" type="number" value="">
+                </div>
+            </div> 
         </div>
+        <div>
+            <table id="table">
+              <tr>
+                <th>圈数</th>
+                <th>玩家一</th>
+                <th>玩家二</th>
+                <th>玩家三</th>
+                <th>玩家四</th>
+              </tr>
+              <tr>
+                <td>总计</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>第一圈</td>
+                <td>3</td>
+                <td>4</td>
+                <td>3</td>
+                <td>-10</td>
+              </tr>
+            </table>
+        </div>
+
         <div id="Confirmationbox">
             <button id="Confirmation" onclick="score()">确认</button>
         </div>
+
         <script>
-            function select(type){
-                var x=document.getElementById("win");
-                var y=document.getElementById("lose");
-                var z=document.getElementById("sign");
+            function select(player,type){
+                var x=document.getElementById("win"+player);
+                var y=document.getElementById("lose"+player);
+                var z=document.getElementById("sign"+player);
                 if (type=="win") {
                     x.setAttribute("class","winselect");
                     y.setAttribute("class","losebase");
@@ -144,11 +255,20 @@
                     z.innerHTML="-";
                 }
             }
+            // 
+
+          
+
             function score(){
                 var a=document.getElementById("score").value;
+                
+                var b=document.getElementById("score1").value;
+                
                 console.log(a);
+         
                 
             }
+            //确认键
         </script>
     </body>
 </html>
