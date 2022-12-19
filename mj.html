@@ -132,7 +132,6 @@
         
         #table {
             width: 600px;
-            height: 150px;
             background-color: rgb(255, 255, 255);
             position: absolute;
             top: 600px;
@@ -164,7 +163,7 @@
                 </div>
                 <div class="boxbox">
                     <div id="sign1" class="win">+</div>
-                    <input id="score1" class="score" type="number" value="">
+                    <input id="score1" class="score" type="number" value="" onchange="autoCal(1)">
                 </div>
             </div>
         
@@ -178,7 +177,7 @@
                 </div>
                 <div class="boxbox">
                     <div id="sign2" class="win">+</div>
-                    <input id="score2" class="score" type="number" value="">
+                    <input id="score2" class="score" type="number" value="" onchange="autoCal(2)">
                 </div>
             </div> 
             
@@ -192,7 +191,7 @@
                 </div>
                 <div class="boxbox">
                     <div id="sign3" class="win">+</div>
-                    <input id="score3" class="score" type="number" value="">
+                    <input id="score3" class="score" type="number" value="" onchange="autoCal(3)">
                 </div>
             </div>
 
@@ -206,33 +205,32 @@
                 </div>
                 <div class="boxbox">
                     <div id="sign4" class="win">+</div>
-                    <input id="score4" class="score" type="number" value="">
+                    <input id="score4" class="score" type="number" value="" onchange="autoCal(4)">
                 </div>
             </div> 
         </div>
         <div>
             <table id="table">
-              <tr>
-                <th>圈数</th>
-                <th>玩家一</th>
-                <th>玩家二</th>
-                <th>玩家三</th>
-                <th>玩家四</th>
-              </tr>
-              <tr>
-                <td>总计</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>第一圈</td>
-                <td>3</td>
-                <td>4</td>
-                <td>3</td>
-                <td>-10</td>
-              </tr>
+                <thead>
+                    <tr>
+                        <th>圈数</th>
+                        <th>玩家一</th>
+                        <th>玩家二</th>
+                        <th>玩家三</th>
+                        <th>玩家四</th>
+                    </tr>
+                    <tr id="total"> 
+                        <th>总计</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                    </tr>
+                </thead>
+              <tbody id="tbody">
+
+              </tbody>
+              
             </table>
         </div>
 
@@ -241,6 +239,125 @@
         </div>
 
         <script>
+            var players={};
+            players.player1={name:"玩家1",score:0,sign:1,total:0};
+            players.player2={name:"玩家2",score:0,sign:1,total:0};
+            players.player3={name:"玩家3",score:0,sign:1,total:0};
+            players.player4={name:"玩家4",score:0,sign:1,total:0};
+            players.count=0;
+            function autoCal(){
+                var input1=document.getElementById("score1").value;
+                var input2=document.getElementById("score2").value;
+                var input3=document.getElementById("score3").value;
+                var input4=document.getElementById("score4").value;
+                var calResult=0;
+                if (input1===""&&input2!=""&&input3!=""&&input4!=""){
+                    if (players.player2.sign===0) {
+                        calResult=calResult-parseInt(input2);
+                    }else{
+                        calResult=calResult+parseInt(input2);
+                    }
+                    if (players.player3.sign===0) {
+                        calResult=calResult-parseInt(input3);
+                    }else{
+                        calResult=calResult+parseInt(input3);
+                    }
+                    if (players.player4.sign===0) {
+                        calResult=calResult-parseInt(input4);
+                    }else{
+                        calResult=calResult+parseInt(input4);
+                    }
+                    calResult=0-calResult;
+                    if (calResult<0) {
+                        input1=0-calResult;
+                        select("1","lose");
+                    }else {
+                        input1 = calResult;
+                        select("1","win");
+                    }
+                    document.getElementById("score1").value=input1;
+                }
+                if (input2===""&&input1!=""&&input3!=""&&input4!=""){
+                    if (players.player1.sign===0) {
+                        calResult=calResult-parseInt(input1);
+                    }else{
+                        calResult=calResult+parseInt(input1);
+                    }
+                    if (players.player3.sign===0) {
+                        calResult=calResult-parseInt(input3);
+                    }else{
+                        calResult=calResult+parseInt(input3);
+                    }
+                    if (players.player4.sign===0) {
+                        calResult=calResult-parseInt(input4);
+                    }else{
+                        calResult=calResult+parseInt(input4);
+                    }
+                    calResult=0-calResult;
+                    if (calResult<0) {
+                        input2=0-calResult;
+                        select("2","lose");
+                    }else {
+                        input2 = calResult;
+                        select("2","win");
+                    }
+                    document.getElementById("score2").value=input2;
+                }
+                if (input3===""&&input1!=""&&input2!=""&&input4!=""){
+                    if (players.player2.sign===0) {
+                        calResult=calResult-parseInt(input2);
+                    }else{
+                        calResult=calResult+parseInt(input2);
+                    }
+                    if (players.player1.sign===0) {
+                        calResult=calResult-parseInt(input1);
+                    }else{
+                        calResult=calResult+parseInt(input1);
+                    }
+                    if (players.player4.sign===0) {
+                        calResult=calResult-parseInt(input4);
+                    }else{
+                        calResult=calResult+parseInt(input4);
+                    }
+                    calResult=0-calResult;
+                    if (calResult<0) {
+                        input3=0-calResult;
+                        select("3","lose");
+                    }else {
+                        input3 = calResult;
+                        select("3","win");
+                    }
+                    document.getElementById("score3").value=input3;
+                }
+                if (input4===""&&input2!=""&&input3!=""&&input1!=""){
+                    if (players.player2.sign===0) {
+                        calResult=calResult-parseInt(input2);
+                    }else{
+                        calResult=calResult+parseInt(input2);
+                    }
+                    if (players.player3.sign===0) {
+                        calResult=calResult-parseInt(input3);
+                    }else{
+                        calResult=calResult+parseInt(input3);
+                    }
+                    if (players.player1.sign===0) {
+                        calResult=calResult-parseInt(input1);
+                    }else{
+                        calResult=calResult+parseInt(input1);
+                    }
+                    calResult=0-calResult;
+                    if (calResult<0) {
+                        input4=0-calResult;
+                        select("4","lose");
+                    }else {
+                        input4 = calResult;
+                        select("4","win");
+                    }
+                    document.getElementById("score4").value=input4;
+                }
+
+
+            }
             function select(player,type){
                 var x=document.getElementById("win"+player);
                 var y=document.getElementById("lose"+player);
@@ -249,24 +366,60 @@
                     x.setAttribute("class","winselect");
                     y.setAttribute("class","losebase");
                     z.innerHTML="+";
+                    players["player"+player].sign=1;
                 }else{
                     x.setAttribute("class","winbase");
                     y.setAttribute("class","loseselect");
                     z.innerHTML="-";
+                    players["player"+player].sign=0;
                 }
             }
-            // 
-
-          
-
             function score(){
-                var a=document.getElementById("score").value;
-                
-                var b=document.getElementById("score1").value;
-                
-                console.log(a);
-         
-                
+                var checkNum = 0;
+                for (let i = 1; i < 5; i++) {
+                    var score =document.getElementById("score"+i).value;
+                    if (score==="") {
+                        alert(i+"号玩家请输入计分");
+                        return false;
+                    }
+                    score = parseInt(score);
+                    if (players["player"+i].sign==1) {
+                        checkNum +=score;
+                    }else{
+                        checkNum -=score;
+                    }
+                    console.log(checkNum);
+                }
+                if(checkNum!=0){
+                    alert("分数有误，总和不为0");
+                    return false;
+                }
+                for (let i = 1; i < 5; i++) {
+                    var s =document.getElementById("score"+i).value;
+                    if (s==="") {
+                        alert(i+"号玩家请输入计分");
+                        return false;
+                    }
+                    s=parseInt(s);
+                    console.log(s);
+
+                    if (players["player"+i].sign==1) {
+                        players["player"+i].score="+"+s;
+                        players["player"+i].total+=s;
+                    }else {
+                        players["player"+i].score="-"+s;
+                        players["player"+i].total-=s;
+                    }
+                }
+                players.count++;  
+                var tbody=document.getElementById("tbody");
+                var htmlStr = tbody.innerHTML;
+                htmlStr += "<tr><td>第"+players.count+"圈</td><td>"+players.player1.score+"</td><td>"+players.player2.score+"</td><td>"+players.player3.score+"</td><td>"+players.player4.score+"</td></tr>";              
+                tbody.innerHTML=htmlStr;
+                var total=document.getElementById("total");
+                var totalStr = total.innerHTML;               
+                totalStr = "<tr><th>总分</th><th>"+players.player1.total+"</th><th>"+players.player2.total+"</th><th>"+players.player3.total+"</th><th>"+players.player4.total+"</th></tr>";
+                total.innerHTML=totalStr;
             }
             //确认键
         </script>
