@@ -130,7 +130,24 @@
             font-size: 20px;
             outline: none;
         }
-        
+
+        #clearButtonBox {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 500px;
+            left: 60%;
+        }
+        #clearButton {
+            width: 100px;
+            height: 50px;
+            background-color: rgb(255, 0, 0);
+            border: 1px solid white;
+            color: white;
+            font-size: 20px;
+            outline: none;
+        }
+
         #table {
             width: 100%;
             background-color: rgb(255, 255, 255);
@@ -150,14 +167,17 @@
         tr:nth-child(odd) {
             background-color: #f6f4f0;
         }
-        
+        #tips {
+            background-color: #eee;
+            color:red;
+        }
 
     </style>
-    <body>
+    <body onload="initData()">
         <div id="players">
             <div id="zong1" class="one">
                 <div class="namebox">
-                    <div class="avatar"><img src="./img/player1.png"></div>
+                    <div class="avatar" onclick="changeAvatar(1)"><img id="avatar1" src="./img/player1.png"></div>
                     <p id="name1" class="name" value="" onclick="changeName(1)">玩家1</p>
                 </div>
                 <div class="box">
@@ -171,7 +191,7 @@
         
             <div id="zong2" class="one">
                 <div class="namebox">
-                    <div class="avatar"><img src="./img/player2.png"></div>
+                    <div class="avatar" onclick="changeAvatar(2)"><img id="avatar2" src="./img/player2.png"></div>
                     <p id="name2" class="name" value="" onclick="changeName(2)">玩家2</p>
                 </div>
                 <div class="box">
@@ -185,7 +205,7 @@
             
             <div id="zong3" class="one">
                 <div class="namebox">
-                    <div class="avatar"><img src="./img/player3.png"></div>
+                    <div class="avatar" onclick="changeAvatar(3)"><img id="avatar3" src="./img/player3.png"></div>
                     <p id="name3" class="name" value="" onclick="changeName(3)">玩家3</p>
                 </div>
                 <div class="box">
@@ -199,7 +219,7 @@
 
             <div id="zong4" class="one">
                 <div class="namebox">
-                    <div class="avatar"><img src="./img/player4.png"></div>
+                    <div class="avatar" onclick="changeAvatar(4)"><img id="avatar4" src="./img/player4.png"></div>
                     <p id="name4" class="name" value="" onclick="changeName(4)">玩家4</p>
                 </div>
                 <div class="box">
@@ -239,17 +259,89 @@
         <div id="Confirmationbox">
             <button id="Confirmation" onclick="score()">确认</button>
         </div>
+        <div id="clearButtonBox">
+            <button id="clearButton" onclick="cleartotal()">清零</button>
+        </div>
+
+        <h3 id="tips">提示：点击昵称可以进行改名；清零不修改昵称。</h3>
 
         <script>
-            // function saveData(){
-
-            // }
+            function saveData(){
+                // localStorage.setItem(name,value);
+                var playersJsonString=JSON.stringify(players);
+                console.log(playersJsonString);
+                localStorage.setItem("players",playersJsonString);
+                var historyStr=document.getElementById("tbody").innerHTML;
+                localStorage.setItem("history",historyStr);
+            }
+            function cleartotal(){
+                players.count=0;
+                var playersJsonString=JSON.stringify(players);
+                for (let i = 1; i < 5; i++){
+                    let player=players["player"+i];
+                    player.score="";
+                    player.sign=1;
+                    player.total=0;
+                }
+                var total=document.getElementById("total");
+                var totalStr = total.innerHTML;               
+                totalStr="<tr><th>总分</th><th>"+players.player1.total+"</th><th>"+players.player2.total+"</th><th>"+players.player3.total+"</th><th>"+players.player4.total+"</th></tr>";
+                total.innerHTML=totalStr;
+                var historyStr=document.getElementById("tbody").innerHTML;
+                historyStr="";
+                localStorage.setItem("history",historyStr);
+                historyStr=localStorage.getItem("history");
+                document.getElementById("tbody").innerHTML=historyStr;
+               
+                
+            }
+            function initData(){
+                var playersJsonString=localStorage.getItem("players");
+                // console.log(playersJsonString);
+                if (playersJsonString!=null) {
+                    players=JSON.parse(playersJsonString);
+                    console.log(players);
+                    for (let i = 1; i < 5; i++) {
+                        let player=players["player"+i];
+                        document.getElementById("name"+i).innerHTML=player.name;
+                        document.getElementById("tname"+i).innerHTML=player.name;
+                    }
+                    var total=document.getElementById("total");
+                    var totalStr = total.innerHTML;               
+                    totalStr = "<tr><th>总分</th><th>"+players.player1.total+"</th><th>"+players.player2.total+"</th><th>"+players.player3.total+"</th><th>"+players.player4.total+"</th></tr>";
+                    total.innerHTML=totalStr; 
+                    var historyStr=localStorage.getItem("history");
+                    if (historyStr!=null) {
+                        document.getElementById("tbody").innerHTML=historyStr;
+                    }
+                }
+                // for (let i = 1; i < 5; i++) {              
+                //     var newname=localStorage.getItem('playerName'+i);
+                //     // console.log(newname);
+                //     if (newname!=null && name.length<=5) {
+                //         document.getElementById('name'+i).innerHTML=newname;
+                //         document.getElementById('tname'+i).innerHTML=newname;
+                //     }
+                // }
+            }
             function changeName(playerId){
                 var name = prompt("新昵称是:");
+                if (name=="") {
+                    alert("请输入新的昵称");
+                    return false;
+                }
+                if (name.length>5) {
+                    alert("昵称不得超过五个字");
+                    return false;
+                }
                 document.getElementById("name"+playerId).innerHTML=name;
                 players["player"+playerId].name=name;
                 document.getElementById("tname"+playerId).innerHTML=name;
-
+                // saveData("playerName"+playerId,name);
+                saveData();
+            }
+            function changeAvatar(playerId){
+                alert("换头像");
             }
             var players={};
             players.player1={name:"玩家1",score:0,sign:1,total:0};
@@ -386,6 +478,12 @@
                     players["player"+player].sign=0;
                 }
             }
+            function clearScore(){
+                for (let i =1; i<5;i++) {
+                    document.getElementById("score"+i).value=0;
+                    select(i,"win");
+                }
+            }
             function score(){
                 var checkNum = 0;
                 for (let i = 1; i < 5; i++) {
@@ -423,6 +521,7 @@
                         players["player"+i].total-=s;
                     }
                 }
+                clearScore();
                 players.count++;  
                 var tbody=document.getElementById("tbody");
                 var htmlStr = tbody.innerHTML;
@@ -432,6 +531,7 @@
                 var totalStr = total.innerHTML;               
                 totalStr = "<tr><th>总分</th><th>"+players.player1.total+"</th><th>"+players.player2.total+"</th><th>"+players.player3.total+"</th><th>"+players.player4.total+"</th></tr>";
                 total.innerHTML=totalStr;
+                saveData();
             }
             //确认键
         </script>
