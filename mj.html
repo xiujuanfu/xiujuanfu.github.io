@@ -287,12 +287,13 @@
                 var totalStr = total.innerHTML;               
                 totalStr="<tr><th>总分</th><th>"+players.player1.total+"</th><th>"+players.player2.total+"</th><th>"+players.player3.total+"</th><th>"+players.player4.total+"</th></tr>";
                 total.innerHTML=totalStr;
+                
                 var historyStr=document.getElementById("tbody").innerHTML;
                 historyStr="";
                 localStorage.setItem("history",historyStr);
                 historyStr=localStorage.getItem("history");
                 document.getElementById("tbody").innerHTML=historyStr;
-               
+                saveData();
                 
             }
             function initData(){
