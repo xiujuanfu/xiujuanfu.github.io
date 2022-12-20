@@ -286,7 +286,7 @@
                 localStorage.setItem("history",historyStr);
             }
             function cleartotal(){
-                var r=confirm("确认重开一局");
+                var r=confirm("确认重开一局？所有数据将清零");
                 if (r==true){}
                 else{
                     return false;
@@ -502,7 +502,7 @@
                 }
             }
             function score(){
-                var r=confirm("确认结束一圈");
+                var r=confirm("确认数据无误，添加到记录");
                 if (r==true){}
                 else{
                     return false;
