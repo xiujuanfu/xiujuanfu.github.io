@@ -260,10 +260,10 @@
             <button id="Confirmation" onclick="score()">确认</button>
         </div>
         <div id="clearButtonBox">
-            <button id="clearButton" onclick="cleartotal()">清零</button>
+            <button id="clearButton" onclick="cleartotal()">重开一局</button>
         </div>
 
-        <h3 id="tips">提示：点击昵称可以进行改名；清零不修改昵称。</h3>
+        <h3 id="tips">提示：点击昵称可以进行改名。</h3>
 
         <script>
             function saveData(){
@@ -275,6 +275,11 @@
                 localStorage.setItem("history",historyStr);
             }
             function cleartotal(){
+                var r=confirm("确认重开一局");
+                if (r==true){}
+                else{
+                    return false;
+                }
                 players.count=0;
                 var playersJsonString=JSON.stringify(players);
                 for (let i = 1; i < 5; i++){
@@ -486,6 +491,11 @@
                 }
             }
             function score(){
+                var r=confirm("确认结束一圈");
+                if (r==true){}
+                else{
+                    return false;
+                }
                 var checkNum = 0;
                 for (let i = 1; i < 5; i++) {
                     var score =document.getElementById("score"+i).value;
