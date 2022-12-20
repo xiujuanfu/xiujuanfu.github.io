@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+
+</head>
+
+<body>
+    <ul id="example-1">
+        <li v-for="player in players" :key="player.id">
+          名字：  {{ player.name }} 分数： {{player.score}}
+        </li>
+        <button v-on:click="clearScore">清零</button>
+    </ul>
+    
+    <!-- <div id="app">
+        <p>{{ player1 }}</p>
+        <p>{{ player2 }}</p>
+        <p>{{ player3 }}</p>
+        <p>{{ player4 }}</p>
+    </div> -->
+    <script>
+        // new Vue({
+        //     el: '#app',
+        //     data: {
+        //         player1: "玩家1",
+        //         player2: "玩家2",
+        //         player3: "玩家3",
+        //         player4: "玩家4",
+        //         message: 'Hello Vue.js!'
+        //     }
+        // })
+        var example1 = new Vue({
+            el: '#example-1',
+            data: {
+                players: [
+                    { id:1,name: 'player1',score:10 },
+                    { id:2,name: 'player2',score:99 },
+                    { id:3,name: 'player3',score:9 },
+                    { id:4,name: 'player4',score:39 },
+                ]
+            },
+            methods:{
+                clearScore:function (){
+                    console.log("清零");
+                    for (let index = 0; index < this.players.length; index++) {
+                      
+                        this.players[index].score=0;
+                    }
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
